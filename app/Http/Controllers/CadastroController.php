@@ -58,7 +58,6 @@ class CadastroController extends Controller
         return redirect()->route('cadastros.create');    
     }
 
-
     /**
      * Update the specified resource in storage.
      *

@@ -16,6 +16,7 @@ class BancarioController extends Controller
         $this->request = $request;
         $this->repository = $bancario;
     }
+    
     /**
      * Display a listing of the resource.
      *

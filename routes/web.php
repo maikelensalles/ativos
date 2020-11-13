@@ -18,17 +18,12 @@ Route::resource('cadastros', 'CadastroController')->middleware('auth');
 
 Route::resource('bancarios', 'BancarioController')->middleware('auth');
 
-Route::get('/login', function () {
-    return 'auth.login';
-});
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
-
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
