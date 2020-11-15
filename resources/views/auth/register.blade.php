@@ -1,14 +1,14 @@
 @extends('layouts.app', ['class' => 'bg-default'])
 
 @section('content')
-   
+@include('layouts.headers.guest') 
 
     <div class="container mt--8 pb-5">
         <!-- Table -->
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary shadow border-0">
-                    <div class="card-header bg-transparent pb-5">
+                    {{--<div class="card-header bg-transparent pb-5">
                         <div class="text-muted text-center mt-2 mb-4"><small>{{ __('Cadastre-se com') }}</small></div>
                         <div class="text-center">
                             <a href="#" class="btn btn-neutral btn-icon mr-4">
@@ -20,10 +20,10 @@
                                 <span class="btn-inner--text">{{ __('Google') }}</span>
                             </a>
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                            <small>{{ __('Ou inscreva-se com credenciais') }}</small>
+                            <small>{{ __('Faça seu Cadastro') }}</small>
                         </div>
                         <form role="form" method="POST" action="{{ route('register') }}">
                             @csrf

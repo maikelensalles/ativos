@@ -13,8 +13,8 @@
                 <div class="card card-profile shadow">
                     <div class="card-header text-center border-0 pt-4 pt-md-4 pb-0 pb-md-4">
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('bancarios.create') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Bancários') }}</a>
-                            <a href="{{ route('cadastros.create') }}" class="btn btn-sm btn-default float-right">{{ __('Dados Cadastrais') }}</a>
+                            <a href="{{ route('bancarios.edit') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Bancários') }}</a>
+                            <a href="{{ route('cadastros.edit') }}" class="btn btn-sm btn-default float-right">{{ __('Dados Cadastrais') }}</a>
                         </div>
                     </div>
                     

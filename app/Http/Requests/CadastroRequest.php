@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use App\Rules\CurrentPasswordCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +15,7 @@ class CadastroRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;    
+        return auth()->check();    
     }
 
     /**
@@ -26,7 +27,6 @@ class CadastroRequest extends FormRequest
     {
 
         return [
-            'image' => ['required'],
             'nascimento' => ['required'],
             'genero' => ['required'],
             'cpf' => ['required'],
@@ -44,17 +44,6 @@ class CadastroRequest extends FormRequest
             'empresa' => ['required'],
             'profissao' => ['required'],
             'cargo' => ['required'],
-        ];
-    }
-
-    /**
-     * Get the validation attributes that apply to the request.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
         ];
     }
 }

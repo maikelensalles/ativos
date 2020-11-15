@@ -19,8 +19,29 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('banco')->nullable();
+			$table->string('agencia')->nullable(); 
+            $table->string('conta_corrente')->nullable();
+            $table->string('image')->nullable();
+			$table->string('nascimento')->nullable(); 
+			$table->string('genero')->nullable();
+			$table->string('cpf')->nullable();
+			$table->string('rg')->nullable();
+			$table->string('orgao')->nullable();
+			$table->string('estado_civil')->nullable(); 
+            $table->string('telefone')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('endereco')->nullable(); 
+            $table->string('numero')->nullable(); 
+            $table->string('complemento')->nullable(); 
+            $table->string('bairro')->nullable(); 
+            $table->string('cidade')->nullable(); 
+            $table->string('estado')->nullable(); 
+            $table->string('empresa')->nullable(); 
+            $table->string('profissao')->nullable(); 
+            $table->string('cargo')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

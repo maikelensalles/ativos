@@ -18,16 +18,41 @@
     <div class="row">
         <div class="col">
             <div class="card card-profile shadow">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="card-profile-image">
+                            <a href="#">
+                                <img src="{{ asset('argon') }}/img/theme/sem-foto.jpg" class="rounded-circle">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('bancarios.edit') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Bancários') }}</a>
+                        <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-default float-right">{{ __('Atualizar Login') }}</a>
+                    </div>
+                </div>
+                <br>
+                <br>
                 <div class="card-body pt-0 pt-md-4">
                     <form method="post" action="{{ route('cadastros.update') }}" autocomplete="off">
                         @csrf
-                        @method('PUT')
-                        <h6 class="heading-small  text-center text-muted mb-4">{{ __('Atualizar Cadastro') }}</h6>
-
+                        @method('put')
+                        <h6 class="heading-small  text-center text-muted mb-4">{{ __('Atualizar Dados Cadastrais') }}</h6>
+                        @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('status') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                         <div class="pl-lg-4">
                             <div class="form-group{{ $errors->has('nascimento') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-nascimento">{{ __('Data de Nascimento') }}</label>
-                                <input type="date" name="nascimento" id="input-nascimento" class="form-control form-control-alternative{{ $errors->has('nascimento') ? ' is-invalid' : '' }}" placeholder="{{ __('Data de Nascimento') }}" value="{{ old('nascimento', $cadastro->nascimento) }}" required autofocus>
+                                <input type="date" name="nascimento" id="input-nascimento" class="form-control form-control-alternative{{ $errors->has('nascimento') ? ' is-invalid' : '' }}" placeholder="{{ __('Data de Nascimento') }}" value="{{ old('nascimento', auth()->user()->nascimento) }}" required autofocus>
 
                                 @if ($errors->has('nascimento'))
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +63,13 @@
 
                             <div class="form-group{{ $errors->has('genero') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-genero">{{ __('Gênero') }}</label>
-                                <input type="text" name="genero" id="input-genero" class="form-control form-control-alternative{{ $errors->has('genero') ? ' is-invalid' : '' }}" placeholder="{{ __('Gênero') }}" value="{{ old('genero', $cadastro->genero) }}" required>
+                                <select name="genero" id="input-genero" class="form-control form-control-alternative{{ $errors->has('genero') ? ' is-invalid' : '' }}" required>
+                                    <option>Selecione...</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                                {{--<input type="text" name="genero" id="input-genero" class="form-control form-control-alternative{{ $errors->has('genero') ? ' is-invalid' : '' }}" placeholder="{{ __('Gênero') }}" value="{{ old('genero', auth()->user()->genero) }}" required>--}}
 
                                 @if ($errors->has('genero'))
                                     <span class="invalid-feedback" role="alert">
@@ -49,7 +80,7 @@
 
                             <div class="form-group{{ $errors->has('cpf') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-cpf">{{ __('CPF') }}</label>
-                                <input type="number" name="cpf" id="input-cpf" class="form-control form-control-alternative{{ $errors->has('cpf') ? ' is-invalid' : '' }}" placeholder="{{ __('CPF') }}" value="{{ old('cpf', $cadastro->cpf) }}" required>
+                                <input type="number" name="cpf" id="input-cpf" class="form-control form-control-alternative{{ $errors->has('cpf') ? ' is-invalid' : '' }}" placeholder="{{ __('CPF') }}" value="{{ old('cpf', auth()->user()->cpf) }}" required>
 
                                 @if ($errors->has('cpf'))
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +91,7 @@
 
                             <div class="form-group{{ $errors->has('rg') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-rg">{{ __('RG') }}</label>
-                                <input type="number" name="rg" id="input-rg" class="form-control form-control-alternative{{ $errors->has('rg') ? ' is-invalid' : '' }}" placeholder="{{ __('RG') }}" value="{{ old('rg', $cadastro->rg) }}" required>
+                                <input type="number" name="rg" id="input-rg" class="form-control form-control-alternative{{ $errors->has('rg') ? ' is-invalid' : '' }}" placeholder="{{ __('RG') }}" value="{{ old('rg', auth()->user()->rg) }}" required>
 
                                 @if ($errors->has('rg'))
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +102,7 @@
 
                             <div class="form-group{{ $errors->has('orgao') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-orgao">{{ __('Órgão Exp/UF') }}</label>
-                                <input type="text" name="orgao" id="input-orgao" class="form-control form-control-alternative{{ $errors->has('orgao') ? ' is-invalid' : '' }}" placeholder="{{ __('Órgão Exp/UF') }}" value="{{ old('orgao', $cadastro->orgao) }}" required>
+                                <input type="text" name="orgao" id="input-orgao" class="form-control form-control-alternative{{ $errors->has('orgao') ? ' is-invalid' : '' }}" placeholder="{{ __('Órgão Exp/UF') }}" value="{{ old('orgao', auth()->user()->orgao) }}" required>
 
                                 @if ($errors->has('orgao'))
                                     <span class="invalid-feedback" role="alert">
@@ -82,7 +113,15 @@
 
                             <div class="form-group{{ $errors->has('estado_civil') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-estado_civil">{{ __('Estado civil') }}</label>
-                                <input type="text" name="estado_civil" id="input-estado_civil" class="form-control form-control-alternative{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" placeholder="{{ __('Estado civil') }}" value="{{ old('estado_civil', $cadastro->estado_civil) }}" required>
+                                {{--<input type="text" name="estado_civil" id="input-estado_civil" class="form-control form-control-alternative{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" placeholder="{{ __('Estado civil') }}" value="{{ old('estado_civil', auth()->user()->estado_civil) }}" required>--}}
+                                <select name="estado_civil" id="input-estado_civil" class="form-control form-control-alternative{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" required>
+                                    <option>Selecione...</option>
+                                    <option value="Solteiro(a)">Solteiro(a)</option>
+                                    <option value="Casado(a)">Casado(a)</option>
+                                    <option value="Separado(a)">Separado(a)</option>
+                                    <option value="Divorciado(a)">Divorciado(a)</option>
+                                    <option value="Viúvo(a)">Viúvo(a)</option>
+                                </select>
 
                                 @if ($errors->has('estado_civil'))
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +132,7 @@
 
                             <div class="form-group{{ $errors->has('telefone') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-telefone">{{ __('Telefone') }}</label>
-                                <input type="number" name="telefone" id="input-telefone" class="form-control form-control-alternative{{ $errors->has('telefone') ? ' is-invalid' : '' }}" placeholder="{{ __('Telefone') }}" value="{{ old('telefone', $cadastro->telefone) }}" required>
+                                <input type="number" name="telefone" id="input-telefone" class="form-control form-control-alternative{{ $errors->has('telefone') ? ' is-invalid' : '' }}" placeholder="{{ __('Telefone') }}" value="{{ old('telefone', auth()->user()->telefone) }}" required>
 
                                 @if ($errors->has('telefone'))
                                     <span class="invalid-feedback" role="alert">
@@ -104,7 +143,7 @@
 
                             <div class="form-group{{ $errors->has('cep') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-cep">{{ __('CEP') }}</label>
-                                <input type="number" name="cep" id="input-cep" class="form-control form-control-alternative{{ $errors->has('cep') ? ' is-invalid' : '' }}" placeholder="{{ __('CEP') }}" value="{{ old('cep', $cadastro->telefone) }}" required>
+                                <input type="number" name="cep" id="input-cep" class="form-control form-control-alternative{{ $errors->has('cep') ? ' is-invalid' : '' }}" placeholder="{{ __('CEP') }}" value="{{ old('cep', auth()->user()->telefone) }}" required>
 
                                 @if ($errors->has('cep'))
                                     <span class="invalid-feedback" role="alert">
@@ -115,7 +154,7 @@
 
                             <div class="form-group{{ $errors->has('endereco') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-endereco">{{ __('Endereço') }}</label>
-                                <input type="text" name="endereco" id="input-endereco" class="form-control form-control-alternative{{ $errors->has('endereco') ? ' is-invalid' : '' }}" placeholder="{{ __('Endereço') }}" value="{{ old('endereco', $cadastro->endereco) }}" required>
+                                <input type="text" name="endereco" id="input-endereco" class="form-control form-control-alternative{{ $errors->has('endereco') ? ' is-invalid' : '' }}" placeholder="{{ __('Endereço') }}" value="{{ old('endereco', auth()->user()->endereco) }}" required>
 
                                 @if ($errors->has('endereco'))
                                     <span class="invalid-feedback" role="alert">
@@ -126,7 +165,7 @@
 
                             <div class="form-group{{ $errors->has('numero') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-numero">{{ __('Número') }}</label>
-                                <input type="number" name="numero" id="input-numero" class="form-control form-control-alternative{{ $errors->has('numero') ? ' is-invalid' : '' }}" placeholder="{{ __('Número') }}" value="{{ old('numero', $cadastro->numero) }}" required>
+                                <input type="number" name="numero" id="input-numero" class="form-control form-control-alternative{{ $errors->has('numero') ? ' is-invalid' : '' }}" placeholder="{{ __('Número') }}" value="{{ old('numero', auth()->user()->numero) }}" required>
 
                                 @if ($errors->has('numero'))
                                     <span class="invalid-feedback" role="alert">
@@ -137,7 +176,7 @@
 
                             <div class="form-group{{ $errors->has('complemento') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-complemento">{{ __('Complemento') }}</label>
-                                <input type="text" name="complemento" id="input-complemento" class="form-control form-control-alternative{{ $errors->has('complemento') ? ' is-invalid' : '' }}" placeholder="{{ __('Complemento') }}" value="{{ old('complemento', $cadastro->complemento) }}" required>
+                                <input type="text" name="complemento" id="input-complemento" class="form-control form-control-alternative{{ $errors->has('complemento') ? ' is-invalid' : '' }}" placeholder="{{ __('Complemento') }}" value="{{ old('complemento', auth()->user()->complemento) }}" required>
 
                                 @if ($errors->has('complemento'))
                                     <span class="invalid-feedback" role="alert">
@@ -148,7 +187,7 @@
 
                             <div class="form-group{{ $errors->has('bairro') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-bairro">{{ __('Bairro') }}</label>
-                                <input type="text" name="bairro" id="input-bairro" class="form-control form-control-alternative{{ $errors->has('bairro') ? ' is-invalid' : '' }}" placeholder="{{ __('Bairro') }}" value="{{ old('bairro', $cadastro->bairro) }}" required>
+                                <input type="text" name="bairro" id="input-bairro" class="form-control form-control-alternative{{ $errors->has('bairro') ? ' is-invalid' : '' }}" placeholder="{{ __('Bairro') }}" value="{{ old('bairro', auth()->user()->bairro) }}" required>
 
                                 @if ($errors->has('bairro'))
                                     <span class="invalid-feedback" role="alert">
@@ -159,7 +198,7 @@
 
                             <div class="form-group{{ $errors->has('cidade') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-cidade">{{ __('Cidade') }}</label>
-                                <input type="text" name="cidade" id="input-cidade" class="form-control form-control-alternative{{ $errors->has('cidade') ? ' is-invalid' : '' }}" placeholder="{{ __('Cidade') }}" value="{{ old('cidade', $cadastro->cidade) }}" required>
+                                <input type="text" name="cidade" id="input-cidade" class="form-control form-control-alternative{{ $errors->has('cidade') ? ' is-invalid' : '' }}" placeholder="{{ __('Cidade') }}" value="{{ old('cidade', auth()->user()->cidade) }}" required>
 
                                 @if ($errors->has('cidade'))
                                     <span class="invalid-feedback" role="alert">
@@ -170,7 +209,7 @@
 
                             <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-estado">{{ __('Estado') }}</label>
-                                <input type="text" name="estado" id="input-estado" class="form-control form-control-alternative{{ $errors->has('estado') ? ' is-invalid' : '' }}" placeholder="{{ __('Estado') }}" value="{{ old('estado', $cadastro->estado) }}" required>
+                                <input type="text" name="estado" id="input-estado" class="form-control form-control-alternative{{ $errors->has('estado') ? ' is-invalid' : '' }}" placeholder="{{ __('Estado') }}" value="{{ old('estado', auth()->user()->estado) }}" required>
 
                                 @if ($errors->has('estado'))
                                     <span class="invalid-feedback" role="alert">
@@ -181,7 +220,7 @@
 
                             <div class="form-group{{ $errors->has('empresa') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-empresa">{{ __('Empresa') }}</label>
-                                <input type="text" name="empresa" id="input-empresa" class="form-control form-control-alternative{{ $errors->has('empresa') ? ' is-invalid' : '' }}" placeholder="{{ __('Empresa') }}" value="{{ old('empresa', $cadastro->empresa) }}" required>
+                                <input type="text" name="empresa" id="input-empresa" class="form-control form-control-alternative{{ $errors->has('empresa') ? ' is-invalid' : '' }}" placeholder="{{ __('Empresa') }}" value="{{ old('empresa', auth()->user()->empresa) }}" required>
 
                                 @if ($errors->has('empresa'))
                                     <span class="invalid-feedback" role="alert">
@@ -192,7 +231,7 @@
 
                             <div class="form-group{{ $errors->has('profissao') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-profissao">{{ __('Profissão') }}</label>
-                                <input type="text" name="profissao" id="input-profissao" class="form-control form-control-alternative{{ $errors->has('profissao') ? ' is-invalid' : '' }}" placeholder="{{ __('Profissão') }}" value="{{ old('profissao', $cadastro->profissao) }}" required>
+                                <input type="text" name="profissao" id="input-profissao" class="form-control form-control-alternative{{ $errors->has('profissao') ? ' is-invalid' : '' }}" placeholder="{{ __('Profissão') }}" value="{{ old('profissao', auth()->user()->profissao) }}" required>
 
                                 @if ($errors->has('profissao'))
                                     <span class="invalid-feedback" role="alert">
@@ -203,7 +242,7 @@
 
                             <div class="form-group{{ $errors->has('cargo') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-cargo">{{ __('Cargo') }}</label>
-                                <input type="text" name="cargo" id="input-cargo" class="form-control form-control-alternative{{ $errors->has('cargo') ? ' is-invalid' : '' }}" placeholder="{{ __('Cargo') }}" value="{{ old('cargo', $cadastro->cargo) }}" required>
+                                <input type="text" name="cargo" id="input-cargo" class="form-control form-control-alternative{{ $errors->has('cargo') ? ' is-invalid' : '' }}" placeholder="{{ __('Cargo') }}" value="{{ old('cargo', auth()->user()->cargo) }}" required>
 
                                 @if ($errors->has('cargo'))
                                     <span class="invalid-feedback" role="alert">

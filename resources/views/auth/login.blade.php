@@ -47,7 +47,7 @@
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Entrar com') }}</button>
                             </div>
 
-                            <div class="text-center text-muted mb-4">
+                            {{--<div class="text-center text-muted mb-4">
                                 <a href="#" class="btn btn-neutral btn-icon">
                                     <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
                                     <span class="btn-inner--text">{{ __('Github') }}</span>
@@ -56,7 +56,7 @@
                                     <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
                                     <span class="btn-inner--text">{{ __('Google') }}</span>
                                 </a>
-                            </div>
+                            </div>--}}
                         </form>
                     </div>
                 </div>

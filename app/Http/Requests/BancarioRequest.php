@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use App\Rules\CurrentPasswordCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +15,7 @@ class BancarioRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;    
+        return auth()->check();    
     }
 
     /**
@@ -24,22 +25,10 @@ class BancarioRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'banco' => ['required'],
             'agencia' => ['required'],
             'conta_corrente' => ['required'],
-        ];
-    }
-
-    /**
-     * Get the validation attributes that apply to the request.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
         ];
     }
 }

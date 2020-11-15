@@ -117,7 +117,7 @@
                     <div class="collapse show" id="navbar">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cadastros.create') }}">
+                                <a class="nav-link" href="{{ route('cadastros.edit') }}">
                                     <i class="ni ni-fat-delete"></i>
                                     {{ __('Dados cadastrais') }}
                                 </a>

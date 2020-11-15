@@ -30,7 +30,7 @@
                 <br>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('bancarios.create') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Bancários') }}</a>
+                        <a href="{{ route('bancarios.edit') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Bancários') }}</a>
                         <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-default float-right">{{ __('Atualizar Login') }}</a>
                     </div>
                 </div>

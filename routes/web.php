@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('novidades', 'NovidadeController')->middleware('auth');
 
-Route::resource('cadastros', 'CadastroController')->middleware('auth');
-
-Route::resource('bancarios', 'BancarioController')->middleware('auth');
-
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -32,9 +28,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
-//Route::group(['middleware' => 'auth'], function () {
-//	Route::get('cadastros', ['as' => 'cadastros.create', 'uses' => 'CadastroController@create']);
-//	Route::post('cadastros', ['as' => 'cadastros.store', 'uses' => 'CadastroController@store']);
-//	Route::put('cadastros', ['as' => 'cadastros.update', 'uses' => 'CadastroController@update']);
-//});
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('cadastros', ['as' => 'cadastros.create', 'uses' => 'CadastroController@create']);
+	Route::post('cadastros', ['as' => 'cadastros.store', 'uses' => 'CadastroController@store']);
+	Route::put('cadastros', ['as' => 'cadastros.update', 'uses' => 'CadastroController@update']);
+	Route::get('cadastros', ['as' => 'cadastros.edit', 'uses' => 'CadastroController@edit']);
 
+});
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('bancarios', ['as' => 'bancarios.create', 'uses' => 'BancarioController@create']);
+	Route::post('bancarios', ['as' => 'bancarios.store', 'uses' => 'BancarioController@store']);
+	Route::put('bancarios', ['as' => 'bancarios.update', 'uses' => 'BancarioController@update']);
+	Route::get('bancarios', ['as' => 'bancarios.edit', 'uses' => 'BancarioController@edit']);
+});
+	
