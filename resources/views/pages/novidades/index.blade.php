@@ -46,7 +46,7 @@
                                                 <tr>
                                                     <td>
                                                         @if ($novidade->image)
-                                                            <img src="{{ url("storage/{$novidade->image}") }}">
+                                                            <img src="{{ url("novidades/{$novidade->image}") }}">
                                                         @endif
                                                     </td>  
                                                 </tr>

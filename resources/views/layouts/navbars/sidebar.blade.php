@@ -85,6 +85,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contratos.index') }}">
+                        <i class="fas fa-file-contract text-default"></i> {{ __('Propostas') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-file-signature text-info"></i> {{ __('Meus Contratos') }}
                     </a>
@@ -110,7 +116,7 @@
             
                 <li class="nav-item">
                     <a class="nav-link " href="#navbar" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar">
-                        <i class="fas fa-angle-double-right text-default"></i>
+                        <i class="fas fa-angle-double-right text-warning"></i>
                         <span class="nav-link-text">{{ __('Mais') }}</span>
                     </a>
 

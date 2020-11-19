@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('novidades', 'NovidadeController')->middleware('auth');
 
+Route::resource('contratos', 'ContratoController')->middleware('auth');
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -33,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('cadastros', ['as' => 'cadastros.store', 'uses' => 'CadastroController@store']);
 	Route::put('cadastros', ['as' => 'cadastros.update', 'uses' => 'CadastroController@update']);
 	Route::get('cadastros', ['as' => 'cadastros.edit', 'uses' => 'CadastroController@edit']);
-
+	Route::get('cadastros/{id}', ['as' => 'products.show', 'CadastroController@show']);
 });
 
 Route::group(['middleware' => 'auth'], function () {

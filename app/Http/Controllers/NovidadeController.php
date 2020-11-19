@@ -40,8 +40,16 @@ class NovidadeController extends Controller
     {
         $data = $request->only('titulo', 'sub_titulo', 'descricao', 'descricao_longa', 'image', 'descricao_media', 'obs');
 
+        //$image = $request->file('image');
+
+        //if($image) {
+            //foreach ($image as $imag){
+                //$path = $imag->store('image', 'public');
+            //}
+        //}
+
         if ($request->hasFile('image') && $request->image->isValid()) {
-            $imagePath = $request->image->store('novidades');
+            $imagePath = $request->image->store('novidades', 'public');
 
             $data['image'] = $imagePath;
         }
