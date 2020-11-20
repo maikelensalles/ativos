@@ -13,7 +13,6 @@
         <div class="row">
             @foreach ($contratos as $contrato)
                 <div class="col-xl-4 mr-0">
-        
                     <div class="card shadow mb-4 mb-xl-4">
                         <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"  style="background-image: {{ url("contratos{$contrato->image}") }}; border-radius: 8px; background-size: cover; background-position: center top;">
                             @if ($contrato->image)
@@ -27,39 +26,42 @@
                             <h2 class="card-title-white text-center">{{ $contrato->titulo }}</h2>
                             <h3 class="card-title-white text-center">{{ $contrato->setor->nome }}</h3>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 ">
-                                        <h4 class="card-title-white text-left">Valor da Cota:</h4>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            <h4 class="card-title-white">Valor da Cota:</h4>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p class="card-title-white">R${{ $contrato->valor_cota }}</p>
+                                        </div> 
                                     </div>
-                                    <div class="col-xl-6 col-lg-6">
-                                        <p class="card-title-white text-right">R${{ $contrato->valor_cota }}</p>
-                                    </div> 
-                                    <div class="col-xl-6 col-lg-6 ">
-                                        <h4 class="card-title-white text-left">Participação:</h4>
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            <h4 class="card-title-white">Participação:</h4>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p class="card-title-white ">{{ $contrato->participacao }}% ao ano</p>
+                                        </div> 
                                     </div>
-                                    <div class="col-xl-6 col-lg-6">
-                                        <p class="card-title-white text-right">{{ $contrato->participacao }}% ao ano</p>
-                                    </div> 
-                                    <div class="col-xl-6 col-lg-6 ">
-                                        <h4 class="card-title-white text-left">Valor Captado:</h4>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6">
-                                        <p class="card-title-white text-right">R${{ $contrato->valor_captado }}</p>
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            <h4 class="card-title-white">Valor Captado:</h4>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p class="card-title-white">R$ {{ $contrato->valor_captado }}</p>
+                                        </div>
                                     </div>
                                     <hr>
-
-                                    <div class="col-xl-6 col-lg-6 text-left">
-                                        <form action="{{ route('contratos.show', $contrato->id) }}">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-secondary btn-sm">VER DETALHES</button>
-                                        </form>  
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            <a href="{{ route('contrato.single', ['slug' => $contrato->slug]) }}" class="btn btn-secondary btn-sm">VER DETALHES</a>
+     
+                                        </div>
+                                        <div class="col text-right">
+                                            <a href="{{ route('contratos.show', $contrato->id) }}" class="btn btn-warning btn-sm">{{ $contrato->status }}</a>
+                                        </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 text-right">
-                                        <form action="#" method="post">
-                                        <button type="button" class="btn btn-warning btn-sm">{{ $contrato->status }}</button>
-                                    </div>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>

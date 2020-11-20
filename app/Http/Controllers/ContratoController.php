@@ -11,12 +11,14 @@ use App\Contrato;
 class ContratoController extends Controller
 {
     protected $request;
+    private $contrato;
     private $repository;
 
-    public function __construct(Request $request, Contrato $contrato)
+    public function __construct(Contrato $contrato, Request $request)
     {
         $this->request = $request;
         $this->repository = $contrato;
+        $this->contrato = $contrato;
     }
 
     /**
@@ -73,7 +75,6 @@ class ContratoController extends Controller
      */
     public function show($id)
     {
-        //$product = Product::where('id', $id)->first();
         if (!$contrato = $this->repository->find($id))
             return redirect()->back();
 
@@ -146,5 +147,12 @@ class ContratoController extends Controller
         $contrato->delete();
 
         return redirect()->route('contratos.index');
+    }
+
+    public function single($slug)
+    {
+        $contrato = $this->contrato->whereSlug($slug)->first();
+
+        return view('single', compact('contrato'));
     }
 }

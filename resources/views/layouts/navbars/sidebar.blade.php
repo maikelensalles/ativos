@@ -91,7 +91,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('propostas.index') }}">
                         <i class="fas fa-file-signature text-info"></i> {{ __('Meus Contratos') }}
                     </a>
                 </li>
@@ -109,7 +109,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('gestores.index')}}">
                         <i class="fas fa-map-pin text-primary"></i> {{ __('Novos Gestores') }}
                     </a>
                 </li>

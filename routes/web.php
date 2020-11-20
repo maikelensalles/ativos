@@ -16,6 +16,12 @@ Route::resource('novidades', 'NovidadeController')->middleware('auth');
 
 Route::resource('contratos', 'ContratoController')->middleware('auth');
 
+Route::resource('propostas', 'ContratoUserController')->middleware('auth');
+
+Route::resource('gestores', 'GestorController')->middleware('auth');
+
+Route::get('/contrato/{slug}', 'ContratoController@single')->name('contrato.single');
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -35,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('cadastros', ['as' => 'cadastros.store', 'uses' => 'CadastroController@store']);
 	Route::put('cadastros', ['as' => 'cadastros.update', 'uses' => 'CadastroController@update']);
 	Route::get('cadastros', ['as' => 'cadastros.edit', 'uses' => 'CadastroController@edit']);
-	Route::get('cadastros/{id}', ['as' => 'products.show', 'CadastroController@show']);
+	Route::get('cadastros/{id}', ['as' => 'cadastros.show', 'uses' => 'CadastroController@show']);
 });
 
 Route::group(['middleware' => 'auth'], function () {
