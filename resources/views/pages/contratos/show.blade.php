@@ -4,8 +4,8 @@
 <div class="header bg-gradient-primary pb-4 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
-            <h1 class="text-center text-white display-3">Investimento: {{ $contrato->titulo }}</h1>
-            <p class="text-center text-white">Siga os passos abaixo para completar o seu investimento</p>
+            <h1 class="text-center text-white display-3">Investimento: </h1>
+            <p class="text-center text-white">Siga os passos abaixo para solicitar seu saque</p>
         </div>
     </div>
 </div>
@@ -18,14 +18,16 @@
                                 <table class="table  table-flush">                                    
                                     <br>
                                     <br>
-                                    <p>Insira o valor que deseja investir neste projeto!</p>
-                                    <p>O valor mínimo do investimento é de R$ {{ $contrato->valor_cota }} sendo permitido valores múltiplos de R$ {{ $contrato->valor_cota }}.</p>
+                                    <p>Insira o valor que deseja sacar neste projeto!</p>
+                                    <p>Informações aqui sobre o saque...</p>
+                                    <h3 class="text-danger">Mantenha seus dados cadastrais e bancários sempre atualizados!</h3>
                                 </table> 
-                                <form method="post" action="{{ route('propostas.store') }}" autocomplete="off">
-                                        @csrf                                   
-                                        <div class="form-group{{ $errors->has('valor') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-valor">Valor do investimento (R$)</label>
-                                            <input type="number" name="valor" id="input-valor" class="form-control form-control-alternative{{ $errors->has('valor') ? ' is-invalid' : '' }}" value="{{ old('valor') }}" required>
+                                <form method="post" action="{{ route('contratos.store') }}" autocomplete="off">
+                                        @csrf 
+
+                                        <div class="form-group{{ $errors->has('saque') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-saque">Solicitar Saque (R$)</label>
+                                            <input type="number" name="saque" id="input-saque" class="form-control form-control-alternative{{ $errors->has('saque') ? ' is-invalid' : '' }}" value="{{ old('saque') }}" required>
                                         </div>
 
                                         <div class="text-center">

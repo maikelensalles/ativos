@@ -7,6 +7,8 @@ use App\Http\Requests\ContratoRequest;
 use Illuminate\Http\Request;
 use App\ContratoSetor;
 use App\Contrato;
+use App\User;
+
 
 class ContratoController extends Controller
 {
@@ -30,7 +32,7 @@ class ContratoController extends Controller
     {
         $contratos = Contrato::paginate(25);
 
-        return view('pages.contratos.index', compact('contratos'));
+        return view('pages.propostas.index', compact('contratos'));
     }
 
     /**
@@ -40,10 +42,11 @@ class ContratoController extends Controller
      */
     public function create()
     {
-        $setors = ContratoSetor::all();
+        $user = User::all();
 
-        return view('pages.contratos.create', compact('setors'));
-    
+        $contratos = Contrato::all();
+
+        return view('pages.propostas.show', compact('user', 'contratos')); 
     }
 
     /**
@@ -64,7 +67,7 @@ class ContratoController extends Controller
 
         $this->repository->create($data);
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('propostas.index');
     }
 
      /**
@@ -78,7 +81,7 @@ class ContratoController extends Controller
         if (!$contrato = $this->repository->find($id))
             return redirect()->back();
 
-        return view('pages.contratos.show', [
+        return view('pages.propostas.show', [
             'contrato' => $contrato
         ]);
     }
@@ -96,7 +99,7 @@ class ContratoController extends Controller
         if (!$contrato = $this->repository->find($id))
             return redirect()->back();
 
-        return view('pages.contratos.edit', compact('contrato', 'setores'));
+        return view('pages.propostas.edit', compact('contrato', 'setores'));
     }
 
     /**
@@ -125,7 +128,7 @@ class ContratoController extends Controller
 
         $contrato->update($data);
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('propostas.index');
     }
 
     /**
@@ -146,7 +149,7 @@ class ContratoController extends Controller
 
         $contrato->delete();
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('propostas.index');
     }
 
     public function single($slug)

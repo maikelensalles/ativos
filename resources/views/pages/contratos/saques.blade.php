@@ -4,7 +4,7 @@
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
-            <h1 class="text-center text-white display-3">Meus Contratos</h1>
+            <h1 class="text-center text-white display-3">Solicitar Resgate</h1>
         </div>
     </div>
 </div>
@@ -17,10 +17,6 @@
                         <div>
                             <br>
                             <h2 class="card-title-white text-center" >{{ $contratouser->contrato->titulo }}</h2>
-                            @if($contratouser->contrato->status == "LISTA DE ESPERA")
-                                <h3 class="text-center text-warning ">{{ $contratouser->contrato->status }}</h3>
-                            @else
-                            @endif
                             <h3 class="card-title-white text-center"></h3>
                             <div class="card-body">
                                 <div class="container">
@@ -50,12 +46,8 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col text-left">
-                                            <a href="{{ route('propostas.single', ['slug' => $contratouser->contrato->slug]) }}" class="btn btn-secondary btn-sm">DETALHES</a>
-     
-                                        </div>
-                                        <div class="col text-right">
-                                            <a href="#" class="btn btn-warning btn-sm">INFORMAÇÕES</a>
+                                        <div class="col text-center">
+                                            <a href="{{ route('contratos.show', $contratouser->contrato->id) }}" class="btn btn-success btn-sm">SOLICITAR SAQUE</a>
                                         </div>
                                     </div>
                                 </div> 

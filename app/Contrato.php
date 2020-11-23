@@ -26,6 +26,10 @@ class Contrato extends Model
     public function user() {
         return $this->hasMany('App\ContratoUser');
     }
+
+    public function contrato() {
+        return $this->hasMany('App\Contrato');
+    }
     
     public function setor()
     {

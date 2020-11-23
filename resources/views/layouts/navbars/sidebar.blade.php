@@ -85,19 +85,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contratos.index') }}">
+                    <a class="nav-link" href="{{ route('propostas.index') }}">
                         <i class="fas fa-file-contract text-default"></i> {{ __('Propostas') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('propostas.index') }}">
+                    <a class="nav-link" href="{{ route('contratos.index') }}">
                         <i class="fas fa-file-signature text-info"></i> {{ __('Meus Contratos') }}
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('contratos.saques') }}">
                         <i class="fas fa-hand-holding-usd text-success"></i> {{ __('Solicitar Resgate') }}
                     </a>
                 </li>

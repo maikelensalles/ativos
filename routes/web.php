@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('novidades', 'NovidadeController')->middleware('auth');
 
-Route::resource('contratos', 'ContratoController')->middleware('auth');
+Route::resource('contratos', 'ContratoUserController')->middleware('auth');
 
-Route::resource('propostas', 'ContratoUserController')->middleware('auth');
+Route::get('contrato/saques', 'ContratoUserController@saques')->name('contratos.saques');
+
+Route::resource('propostas', 'ContratoController')->middleware('auth');
 
 Route::resource('gestores', 'GestorController')->middleware('auth');
 
-Route::get('/contrato/{slug}', 'ContratoController@single')->name('contrato.single');
+Route::resource('setors', 'ContratoSetorController')->middleware('auth');
+
+Route::get('/proposta/{slug}', 'ContratoController@single')->name('propostas.single');
 
 Route::get('/', function () {
     return view('auth.login');
