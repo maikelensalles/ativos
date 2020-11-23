@@ -20,8 +20,8 @@
             <div class="card card-profile shadow">
                 <div class="card-header text-center border-0 pt-4 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('cadastros.edit') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Cadastrais') }}</a>
-                        <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-default float-right">{{ __('Atualizar Login') }}</a>
+                        <a href="{{ route('cadastros.edit') }}" class="btn btn btn-default mr-4">{{ __('Dados Cadastrais') }}</a>
+                        <a href="{{ route('profile.edit') }}" class="btn btn btn-default float-right">{{ __('Login e senha') }}</a>
                     </div>
                 </div>
                 <br>                

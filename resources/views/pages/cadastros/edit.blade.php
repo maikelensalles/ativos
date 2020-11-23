@@ -30,8 +30,8 @@
                 <br>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('bancarios.edit') }}" class="btn btn-sm btn-info mr-4">{{ __('Atualizar Dados Bancários') }}</a>
-                        <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-default float-right">{{ __('Atualizar Login') }}</a>
+                        <a href="{{ route('bancarios.edit') }}" class="btn btn btn-default mr-4">{{ __('Dados Bancários') }}</a>
+                        <a href="{{ route('profile.edit') }}" class="btn btn btn-default float-right">{{ __('Login e senha') }}</a>
                     </div>
                 </div>
                 <br>
@@ -64,7 +64,6 @@
                             <div class="form-group{{ $errors->has('genero') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-genero">{{ __('Gênero') }}</label>
                                 <select name="genero" id="input-genero" class="form-control form-control-alternative{{ $errors->has('genero') ? ' is-invalid' : '' }}" required>
-                                    <option>Selecione...</option>
                                     <option value="Feminino">Feminino</option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Outro">Outro</option>
@@ -115,7 +114,6 @@
                                 <label class="form-control-label" for="input-estado_civil">{{ __('Estado civil') }}</label>
                                 {{--<input type="text" name="estado_civil" id="input-estado_civil" class="form-control form-control-alternative{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" placeholder="{{ __('Estado civil') }}" value="{{ old('estado_civil', auth()->user()->estado_civil) }}" required>--}}
                                 <select name="estado_civil" id="input-estado_civil" class="form-control form-control-alternative{{ $errors->has('estado_civil') ? ' is-invalid' : '' }}" required>
-                                    <option>Selecione...</option>
                                     <option value="Solteiro(a)">Solteiro(a)</option>
                                     <option value="Casado(a)">Casado(a)</option>
                                     <option value="Separado(a)">Separado(a)</option>

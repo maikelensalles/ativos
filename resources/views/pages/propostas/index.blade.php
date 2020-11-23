@@ -23,6 +23,7 @@
                             <!-- Header container -->                            
                         </div>
                         <div>
+                            <br>
                             <h2 class="card-title-white text-center">{{ $contrato->titulo }}</h2>
                             <h3 class="card-title-white text-center">{{ $contrato->setor->nome }}</h3>
                             <div class="card-body">

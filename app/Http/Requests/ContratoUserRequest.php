@@ -25,6 +25,8 @@ class ContratoUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'saque' => ['required'],
+            'notificacao' => ['required'],
             'valor' => ['required'],
             'contrato_id' => ['required'],
             'user_id' => ['required'],

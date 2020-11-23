@@ -54,8 +54,42 @@
                                             <a href="{{ route('propostas.single', ['slug' => $contratouser->contrato->slug]) }}" class="btn btn-secondary btn-sm">DETALHES</a>
      
                                         </div>
+                                    
                                         <div class="col text-right">
-                                            <a href="#" class="btn btn-warning btn-sm">INFORMAÇÕES</a>
+                                            <button type="button" class="btn btn-block btn-warning btn-sm " data-toggle="modal" data-target="#modal-notification-{{ $contratouser->contrato->id }}">STATUS</button>
+                                            <div class="modal fade" id="modal-notification-{{ $contratouser->contrato->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                                          <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                                              <div class="modal-content bg-gradient-danger">
+                                                  
+                                                  <div class="modal-header">
+                                                      <h4 class="modal-title" id="modal-title-notification">Titulo fixo aqui...</h4>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">×</span>
+                                                      </button>
+                                                  </div>
+                                                  
+                                                  <div class="modal-body">
+                                                      
+                                                      <div class="py-3 text-center">
+                                                          <i class="ni ni-bell-55 ni-3x"></i>
+                                                          <h3 class="heading mt-4">Obrigado por investir conosco!</h3>
+                                                          <h4 class="heading mt-4">{{ $contratouser->contrato->titulo }}:</h4>
+
+                                                          <p>Informação teste sobre o status da solicitação de investimento de seu cliente{{ $contratouser->notificacao }}</p>
+                                                      </div>
+                                                      
+                                                  </div>
+
+                                                  
+                                                  <div class="text-center">
+                                                      <button type="button" class="btn btn-white ml-auto" data-dismiss="modal">Ok, entendi</button>
+                                                      <br>
+                                                  </div>
+                                                  <br>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      
                                         </div>
                                     </div>
                                 </div> 
