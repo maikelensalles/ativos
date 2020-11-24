@@ -13,6 +13,18 @@ class Contrato extends Model
 
     protected $fillable = ['image', 'participacao', 'titulo', 'sub_titulo', 'descricao', 'descricao_longa', 'rentabilidade_alvo', 'contrato_setor_id', 'body_3', 'body', 'body_2', 'valor_captado', 'valor_cota', 'status', 'slug', 'investidor'];
 
+    public function search($filter = null)
+    {
+        $results = $this->where(function ($query) use($filter) {
+            if ($filter) {
+                $query->where('valor_cota', 'LIKE', "%{$filter}%");
+            }
+        })//->toSql();
+        ->paginate();
+
+        return $results;
+    }
+
     /**
      * Get the options for generating the slug.
      */

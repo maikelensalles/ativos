@@ -30,7 +30,6 @@ class ContratoUserController extends Controller
 
         $contratos = Contrato::all();
 
-
         return view('pages.contratos.index', compact('contratousers', 'contratos'));
     }
 
@@ -45,7 +44,7 @@ class ContratoUserController extends Controller
 
         $contratos = Contrato::all();
 
-        return view('pages.contratos.show', compact('user', 'contratos')); 
+        return view('pages.propostas.show', compact('user', 'contratos')); 
     }
 
     /**
@@ -54,19 +53,13 @@ class ContratoUserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContratoUserRequest $request, ContratoUser $model)
+    public function store(ContratoUserRequest $request, ContratoUser $contratouser)
     {
-        $contratousers = ContratoUser::paginate(25);
-
-        $contratos = Contrato::all();
-
-        $user = User::all();
-
-        $data = $request->only('saque', 'notificacao', 'valor', 'contrato_id', 'user_id');
+        $data = $request->only('valor', 'contrato_id', 'user_id');
 
         $this->repository->create($data);
 
-        return redirect()->route('contratos.index', compact('contratousers', 'contratos', 'user'));
+        return redirect()->route('contratos.index');
     }
 
     /**
@@ -78,12 +71,11 @@ class ContratoUserController extends Controller
      */
     public function show($id)
     {
-
         if (!$contrato = $this->repository->find($id))
             return redirect()->back();
 
         return view('pages.contratos.show', [
-        'contrato' => $contrato
+           'contrato' => $contrato
         ]);
     }
 
@@ -93,7 +85,7 @@ class ContratoUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
         //
     }
@@ -126,25 +118,12 @@ class ContratoUserController extends Controller
     public function destroy( $id)
     {
         $contratouser = $this->repository->where('id', $id)->first();
+
         if (!$contratouser)
             return redirect()->back();
 
         $contratouser->delete();
 
         return redirect()->route('contratos.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function saques(ContratoUser $model)
-    {
-        $contratousers = ContratoUser::paginate(25);
-
-        $contratos = Contrato::all();
-
-        return view('pages.contratos.saques', compact('contratousers', 'contratos'));
     }
 }

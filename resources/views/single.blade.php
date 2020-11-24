@@ -65,6 +65,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col text-center">
+                                @if($contrato->status == "ENCERRADO")
+                                    <a  class="btn btn-secondary btn-sm">{{ $contrato->status }}</a>
+                                @else
+                                    <a href="{{ route('propostas.show', $contrato->id) }}" class="btn btn-warning btn-sm">{{ $contrato->status }}</a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

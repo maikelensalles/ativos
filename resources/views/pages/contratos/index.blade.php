@@ -75,7 +75,7 @@
                                                           <h3 class="heading mt-4">Obrigado por investir conosco!</h3>
                                                           <h4 class="heading mt-4">{{ $contratouser->contrato->titulo }}:</h4>
 
-                                                          <p>Informação teste sobre o status da solicitação de investimento de seu cliente{{ $contratouser->notificacao }}</p>
+                                                          <p></p>
                                                       </div>
                                                       
                                                   </div>

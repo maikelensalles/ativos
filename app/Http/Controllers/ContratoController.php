@@ -9,7 +9,6 @@ use App\ContratoSetor;
 use App\Contrato;
 use App\User;
 
-
 class ContratoController extends Controller
 {
     protected $request;
@@ -69,7 +68,7 @@ class ContratoController extends Controller
 
         return redirect()->route('propostas.index');
     }
-
+            
      /**
      * Display the specified resource.
      *
@@ -157,5 +156,19 @@ class ContratoController extends Controller
         $contrato = $this->contrato->whereSlug($slug)->first();
 
         return view('single', compact('contrato'));
+    }
+
+    /**
+     * Search Contratos
+     */
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+        $contratos = $this->repository->search($request->filter);
+
+        return view('pages.propostas.search', [
+            'contratos' => $contratos,
+            'filters' => $filters,
+        ]);
     }
 }
