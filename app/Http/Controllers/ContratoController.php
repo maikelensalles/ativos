@@ -51,22 +51,16 @@ class ContratoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContratoRequest $request, Contrato $model)
+    public function store(ContratoRequest $request, Contrato $contrato)
     {
-        $data = $request->only('titulo', 'sub_titulo', 'descricao', 'descricao_longa', 'contrato_setor_id', 'rentabilidade_alvo', 'body', 'body_2', 'valor_captado', 'body_3', 'status', 'valor_cota', 'participacao');
-
-        if ($request->hasFile('image') && $request->image->isValid()) {
-            $imagePath = $request->image->store('contratos');
-
-            $data['image'] = $imagePath;
-        }
+        $data = $request->only('valor', 'contrato_id', 'user_id');
 
         $this->repository->create($data);
 
-        return redirect()->route('propostas.index');
+        return redirect()->route('contratos.index');
     }
             
      /**

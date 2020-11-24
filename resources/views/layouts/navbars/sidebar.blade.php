@@ -97,7 +97,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('saques.index') }}">
                         <i class="fas fa-hand-holding-usd text-success"></i> {{ __('Solicitar Resgate') }}
                     </a>
                 </li>

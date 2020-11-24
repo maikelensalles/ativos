@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers; 
 
-use App\Http\Requests\ContratoUserRequest;
+use App\Http\Requests\SaqueRequest;
 use Illuminate\Http\Request;
 use App\ContratoUser;
 use App\Contrato;
 use App\User;
 
-class ContratoUserController extends Controller
+class SaqueController extends Controller
 {
     protected $request;
     private $repository;
 
-    public function __construct(Request $request, ContratoUser $contratouser)
+    public function __construct(SaqueRequest $request, ContratoUser $saque)
     {
         $this->request = $request;
-        $this->repository = $contratouser;
+        $this->repository = $saque;
     }
 
     /**
@@ -24,13 +24,13 @@ class ContratoUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ContratoUser $model)
+    public function index(Saque $model)
     {
-        $contratousers = ContratoUser::paginate(25);
+        $saques = ContratoUser::paginate(25);
 
         $contratos = Contrato::all();
 
-        return view('pages.contratos.index', compact('contratousers', 'contratos'));
+        return view('pages.saques.index', compact('saques', 'contratos'));
     }
 
     /**
@@ -40,11 +40,7 @@ class ContratoUserController extends Controller
      */
     public function create()
     {
-        $user = User::all();
-
-        $contratos = Contrato::all();
-
-        return view('pages.propostas.show', compact('user', 'contratos')); 
+        return view('pages.saques.show', compact('saques')); 
     }
 
     /**
@@ -55,11 +51,11 @@ class ContratoUserController extends Controller
      */
     public function store(Request $request, Contrato $contrat0)
     {
-        $data = $request->only('valor', 'contrato_id', 'user_id');
+        $data = $request->only('saque');
 
         $this->repository->create($data);
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('saques.index');
     }
 
     /**
@@ -71,11 +67,11 @@ class ContratoUserController extends Controller
      */
     public function show($id)
     {
-        if (!$contrato = $this->repository->find($id))
+        if (!$saque = $this->repository->find($id))
             return redirect()->back();
 
-        return view('pages.contratos.show', [
-           'contrato' => $contrato
+        return view('pages.saques.show', [
+           'saque' => $saque
         ]);
     }
 
@@ -97,16 +93,16 @@ class ContratoUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContratoUserRequest $request, $id)
+    public function update(SaqueRequest $request, $id)
     {   
-        if (!$contratouser = $this->repository->find($id))
+        if (!$saques = $this->repository->find($id))
             return redirect()->back();
 
         $data = $request->all();
 
-        $contratouser->update($data);
+        $saques->update($data);
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('saques.index');
     }
 
     /**
@@ -117,13 +113,13 @@ class ContratoUserController extends Controller
      */
     public function destroy( $id)
     {
-        $contratouser = $this->repository->where('id', $id)->first();
+        $saques = $this->repository->where('id', $id)->first();
 
-        if (!$contratouser)
+        if (!$saques)
             return redirect()->back();
 
-        $contratouser->delete();
+        $saques->delete();
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('saques.index');
     }
 }
