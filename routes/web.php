@@ -19,7 +19,11 @@ Route::any('propostas/search', 'ContratoController@search')->name('propostas.sea
 
 Route::resource('contratos', 'ContratoUserController')->middleware('auth');
 
-Route::resource('saques', 'SaqueController')->middleware('auth');
+Route::get('saques', 'ContratoUserController@saque')->name('saques.saque');
+
+Route::get('saques/{id}', 'ContratoUserController@sacar')->name('saques.sacar');
+
+Route::post('saques', 'ContratoUserController@solicitar')->name('saques.solicitar');
 
 Route::resource('propostas', 'ContratoController')->middleware('auth');
 
@@ -57,4 +61,3 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('bancarios', ['as' => 'bancarios.update', 'uses' => 'BancarioController@update']);
 	Route::get('bancarios', ['as' => 'bancarios.edit', 'uses' => 'BancarioController@edit']);
 });
-	

@@ -41,11 +41,7 @@ class ContratoController extends Controller
      */
     public function create()
     {
-        $user = User::all();
-
-        $contratos = Contrato::all();
-
-        return view('pages.propostas.show', compact('user', 'contratos')); 
+       
     }
 
     /**

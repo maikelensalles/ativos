@@ -87,7 +87,12 @@ class ContratoUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contratouser = ContratoUser::all();
+
+        if (!$contratouser = $this->repository->find($id))
+            return redirect()->back();
+
+        return view('pages.contratos.edit', compact('contratouser'));
     }
 
     /**
@@ -97,7 +102,7 @@ class ContratoUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContratoUserRequest $request, $id)
+    public function update(Request $request, $id)
     {   
         if (!$contratouser = $this->repository->find($id))
             return redirect()->back();
@@ -106,7 +111,7 @@ class ContratoUserController extends Controller
 
         $contratouser->update($data);
 
-        return redirect()->route('contratos.index');
+        return redirect()->route('saques.saque');
     }
 
     /**
@@ -125,5 +130,19 @@ class ContratoUserController extends Controller
         $contratouser->delete();
 
         return redirect()->route('contratos.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saque(ContratoUser $model)
+    {
+        $contratousers = ContratoUser::paginate(25);
+
+        $contratos = Contrato::all();
+
+        return view('pages.saques.saque', compact('contratousers', 'contratos'));
     }
 }

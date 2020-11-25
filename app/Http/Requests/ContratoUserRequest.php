@@ -14,7 +14,7 @@ class ContratoUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return  true;
     }
 
     /**
@@ -25,6 +25,7 @@ class ContratoUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'saque' => ['required'],
             'valor' => ['required'],
             'contrato_id' => ['required'],
             'user_id' => ['required'],
