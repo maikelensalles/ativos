@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="header bg-gradient-primary pb-4 pt-5 pt-md-8">
+<div class="header bg-gradient-default pb-4 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
             <h1 class="text-center text-white display-3">Investimento: {{ $contratouser->contrato->titulo }}</h1>
@@ -18,7 +18,7 @@
                                 <table class="table  table-flush">                                    
                                     <br>
                                     <br>
-                                    <p>Insira o valor que deseja sacar neste projeto!</p>
+                                    <p>Informações aqui sobre o pradrão de daques...!</p>
                                     <p>Algo aqui</p>
                                     <h3 class="text-danger">Mantenha seus dados cadastrais e bancários sempre atualizados!</h3>
                                 </table> 
@@ -26,8 +26,13 @@
                                         @csrf 
                                         @method('put')
                                         <div class="form-group{{ $errors->has('saque') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-saque">{{ __('Saque do investimento (R$)') }}</label>
-                                            <input type="number" name="saque" id="input-saque" class="form-control form-control-alternative{{ $errors->has('saque') ? ' is-invalid' : '' }}" placeholder="" value="{{ old('saque', $contratouser->saque) }}" required>
+                                            <label class="form-control-label" for="input-saque">{{ __('') }}</label>
+                                            <select name="saque"  id="input-saque" class="form-control form-control-alternative{{ $errors->has('saque') ? ' is-invalid' : '' }}" required>
+                                                <option value="SOLICITOU MINIMO">Solicitar saque minimo</option>
+                                                <option value="SOLICITOU MÉDIO">Solicitar saque médio</option>
+                                                <option value="SOLICITOU MAXIMO">Solicitar saque maximo</option>
+                                                </select>                                    
+                                            </div>
                                         </div>
 
                                         <div class="text-center">

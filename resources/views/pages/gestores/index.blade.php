@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8">
     <h1 class="text-center text-white">Resgate seus amigos dos maus investimentos</h1>
     <div class="container-fluid">
         <div class="header-body">

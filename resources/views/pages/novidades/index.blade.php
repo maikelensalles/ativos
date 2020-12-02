@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
             <h1 class="text-center text-white display-3">Novidades da Plataforma</h1>
@@ -18,7 +18,7 @@
                                 <h5 class="card-title">{{ $novidade->titulo }}</h5>
                                 <br>
                                 <p class="card-text"><b>{{ $novidade->descricao }}</b></p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{ $novidade->id }}">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal-{{ $novidade->id }}">
                                     Saiba Mais
                                 </button>
                             </div>

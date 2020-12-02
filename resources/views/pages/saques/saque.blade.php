@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
-            <h1 class="text-center text-white display-3">Meus Saques</h1>
+            <h1 class="text-center text-white display-3">Solicitar Resgate</h1>
         </div>
     </div>
 </div>
@@ -12,6 +12,7 @@
     <div class="header-body">
         <div class="row">
             @foreach ($contratousers as $contratouser)
+            @if($contratouser->user_id == auth()->user()->id)
                 <div class="col-xl-4 mr-0">
                     <div class="card shadow mb-4 mb-xl-4">
                         <div>
@@ -66,6 +67,8 @@
                         </div>
                     </div>
                 </div>
+                @else
+                @endif
             @endforeach
         </div>
     </div>

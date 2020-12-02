@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('novidades', 'NovidadeController')->middleware('auth');
 
-Route::any('propostas/search', 'ContratoController@search')->name('propostas.search');
+Route::any('propostas/search', 'ContratoController@search')->name('propostas.search')->middleware('auth');
 
 Route::resource('contratos', 'ContratoUserController')->middleware('auth');
 
-Route::get('saques', 'ContratoUserController@saque')->name('saques.saque');
+Route::get('saques', 'ContratoUserController@saque')->name('saques.saque')->middleware('auth');
 
-Route::get('saques/{id}', 'ContratoUserController@sacar')->name('saques.sacar');
+Route::get('saques/{id}', 'ContratoUserController@sacar')->name('saques.sacar')->middleware('auth');
 
-Route::post('saques', 'ContratoUserController@solicitar')->name('saques.solicitar');
+Route::post('saques', 'ContratoUserController@solicitar')->name('saques.solicitar')->middleware('auth');
 
 Route::resource('propostas', 'ContratoController')->middleware('auth');
 

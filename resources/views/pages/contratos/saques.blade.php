@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+<div class="header bg-gradient-default pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
             <h1 class="text-center text-white display-3">Solicitar Resgate</h1>

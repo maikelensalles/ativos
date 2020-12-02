@@ -68,7 +68,7 @@
                                     <option value="Masculino">Masculino</option>
                                     <option value="Outro">Outro</option>
                                 </select>
-                                {{--<input type="text" name="genero" id="input-genero" class="form-control form-control-alternative{{ $errors->has('genero') ? ' is-invalid' : '' }}" placeholder="{{ __('Gênero') }}" value="{{ old('genero', auth()->user()->genero) }}" required>--}}
+                                {{-- <input type="text" name="genero" id="input-genero" class="form-control form-control-alternative{{ $errors->has('genero') ? ' is-invalid' : '' }}" placeholder="{{ __('Gênero') }}" value="{{ old('genero', auth()->user()->genero) }}" required> --}}
 
                                 @if ($errors->has('genero'))
                                     <span class="invalid-feedback" role="alert">
