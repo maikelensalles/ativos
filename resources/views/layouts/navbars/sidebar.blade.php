@@ -14,7 +14,11 @@
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/sem-foto.jpg">
+                                @if (auth()->user()->image)
+                                <img src="{{ url('storage/'. auth()->user()->image) }}" alt="{{ auth()->user()->name }}">
+                                @else
+                                <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/sem-foto.jpg">
+                                @endif                            
                         </span>
                     </div>
                 </a>
@@ -97,7 +101,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('saques.saque') }}">
+                    <a class="nav-link" href="{{ route('resgates.create') }}">
                         <i class="fas fa-hand-holding-usd text-success"></i> {{ __('Solicitar Resgate') }}
                     </a>
                 </li>

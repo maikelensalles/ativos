@@ -21,9 +21,11 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
-                            <a href="#">
-                                <img src="{{ asset('argon') }}/img/theme/sem-foto.jpg" class="rounded-circle">
-                            </a>
+                                @if (auth()->user()->image)
+                                    <img src="{{ url('storage/'. auth()->user()->image) }}" alt="{{ auth()->user()->name }}" class="rounded-circle">
+                                    @else
+                                    <img src="{{ asset('argon') }}/img/theme/sem-foto.jpg" class="rounded-circle">
+                                    @endif
                         </div>
                     </div>
                 </div>

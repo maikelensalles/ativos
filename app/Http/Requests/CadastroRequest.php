@@ -27,6 +27,7 @@ class CadastroRequest extends FormRequest
     {
 
         return [
+            'image' => ['required'],
             'nascimento' => ['required'],
             'genero' => ['required'],
             'cpf' => ['required'],

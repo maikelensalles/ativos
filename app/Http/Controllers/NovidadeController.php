@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\NovidadeRequest;
-
 use Illuminate\Http\Request;
 use App\Novidade;
 

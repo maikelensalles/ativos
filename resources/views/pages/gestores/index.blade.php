@@ -82,17 +82,51 @@
     </div>
 </div>
 
-<div class="container-fluid mt--3">
+<div class="container-fluid mt--5">
     <div class="header-body">
                 <div class="row ">
-                    <div class="col text-center mb-xl-0">
-                        <div class="col mb-4 mb-xl-0">
-                            <div class="table-responsive mb-4 mb-xl-0">
-                                <table class="table  table-flush">                                    
-                                    <br>
-                                    <br>
-                                    <p></p>
-                                </table> 
+                    <div class="col">
+                        <div class="card shadow"> 
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h3 class="mb-0">Amigos Resgatados</h3>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="#" class="btn btn-sm btn-secondary">Adicionar Amigo</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" width="100">Nome</th>
+                                            <th scope="col" width="100">Data</th>
+                                        </tr>
+                                    </thead>
+    
+                                    <tbody>
+                                        @foreach ($usergestores as $usergestore)
+                                            <tr>
+                                                <td>{{ $usergestore->nome }}</td>
+                                                <td>
+                                                    <form action="{{ route('usergestores.edit', $usergestore->id) }}">
+                                                        @csrf
+                                                        
+                                                        <button type="submit" class="btn btn-success btn-sm">Editar</button>
+                                                    </form>
+                                                    <br>
+                                                    <form action="{{ route('usergestores.destroy', $usergestore->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                                                    </form>                                               
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

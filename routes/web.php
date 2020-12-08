@@ -19,6 +19,8 @@ Route::any('propostas/search', 'ContratoController@search')->name('propostas.sea
 
 Route::resource('contratos', 'ContratoUserController')->middleware('auth');
 
+Route::resource('resgates', 'ContratoUserSaqueController')->middleware('auth');
+
 Route::get('saques', 'ContratoUserController@saque')->name('saques.saque')->middleware('auth');
 
 Route::get('saques/{id}', 'ContratoUserController@sacar')->name('saques.sacar')->middleware('auth');
@@ -27,7 +29,7 @@ Route::post('saques', 'ContratoUserController@solicitar')->name('saques.solicita
 
 Route::resource('propostas', 'ContratoController')->middleware('auth');
 
-Route::resource('gestores', 'GestorController')->middleware('auth');
+Route::resource('gestores', 'UserGestoreController')->middleware('auth');
 
 Route::resource('setors', 'ContratoSetorController')->middleware('auth');
 

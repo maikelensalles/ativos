@@ -18,11 +18,18 @@
     <div class="row">
         <div class="col">
             <div class="card card-profile shadow">
+                <form method="post" action="{{ route('cadastros.update') }}" enctype="multipart/form-data" autocomplete="off">
+                    @csrf
+                    @method('put')
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
-                            <a href="#">
+                            <a>
+                                @if (auth()->user()->image)
+                                <img src="{{ url('storage/'. auth()->user()->image) }}" alt="{{ auth()->user()->name }}" class="rounded-circle">
+                                @else
                                 <img src="{{ asset('argon') }}/img/theme/sem-foto.jpg" class="rounded-circle">
+                                @endif                            
                             </a>
                         </div>
                     </div>
@@ -37,10 +44,7 @@
                 <br>
                 <br>
                 <div class="card-body pt-0 pt-md-4">
-                    <form method="post" action="{{ route('cadastros.update') }}" autocomplete="off">
-                        @csrf
-                        @method('put')
-                        <h6 class="heading-small  text-center text-muted mb-4">{{ __('Atualizar Dados Cadastrais') }}</h6>
+                    <h6 class="heading-small  text-center text-muted mb-4">{{ __('Atualizar Dados Cadastrais') }}</h6>
                         @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
@@ -49,6 +53,14 @@
                             </button>
                         </div>
                     @endif
+
+                    <div class="pl-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-image">{{ __('Foto de Perfil') }}</label>
+                            <input type="file" name="image" class="form-control form-control-alternative"  >
+                        </div>
+                    </div>
+
                         <div class="pl-lg-4">
                             <div class="form-group{{ $errors->has('nascimento') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="input-nascimento">{{ __('Data de Nascimento') }}</label>
@@ -253,8 +265,8 @@
                                 <button type="submit" class="btn btn-success mt-4">{{ __('Salvar') }}</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

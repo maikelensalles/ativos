@@ -44,7 +44,7 @@
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary my-4">{{ __('Entrar') }}</button>
+                                <button type="submit" class="btn btn-default my-4">{{ __('Entrar') }}</button>
                             </div>
 
                             {{--<div class="text-center text-muted mb-4">
@@ -60,17 +60,18 @@
                         </form>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-6">
+                <div class="row">
+                    {{--<div class="col-6">
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" class="text-light">
                                 <small>{{ __('Esqueceu a senha?') }}</small>
                             </a>
                         @endif
-                    </div>
-                    <div class="col-6 text-right">
+                    </div>--}}
+                    <br>
+                    <div class="col text-center">
                         <a href="{{ route('register') }}" class="text-light">
-                            <small>{{ __('Criar nova conta') }}</small>
+                            <p><b>{{ __('Criar Conta') }}</b></p>
                         </a>
                     </div>
                 </div>

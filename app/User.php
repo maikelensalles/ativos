@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'banco', 'agencia', 'conta_corrente', 'nascimento', 'genero', 'cpf', 'rg', 'orgao', 'estado_civil', 'telefone', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'empresa', 'profissao', 'cargo',
+        'name', 'email', 'password', 'banco', 'agencia', 'conta_corrente', 'nascimento', 'genero', 'cpf', 'rg', 'orgao', 'estado_civil', 'telefone', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'empresa', 'profissao', 'cargo', 'image',
     ];
 
     /**
@@ -39,5 +39,9 @@ class User extends Authenticatable
 
     public function user() {
         return $this->hasMany('App\ContratoUser');
+    }
+
+    public function contratouser() {
+        return $this->hasMany('App\ContratoUserSaque');
     }
 }

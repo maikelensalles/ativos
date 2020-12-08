@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-4">{{ __('Criar Conta') }}</button>
+                                <button type="submit" class="btn btn-default mt-4">{{ __('Criar Conta') }}</button>
                             </div>
                         </form>
                     </div>
