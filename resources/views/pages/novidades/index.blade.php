@@ -46,7 +46,7 @@
                                                 <tr>
                                                     <td>
                                                         @if ($novidade->image)
-                                                            <img src="{{ url("novidades/{$novidade->image}") }}">
+                                                            <img src="http://ativos-master.test/storage/{{ $novidade->image}}" style="border-radius: 5px; background-size: cover; background-position: center top; max-width: 350px; max-height: 350px;">
                                                         @endif
                                                     </td>  
                                                 </tr>

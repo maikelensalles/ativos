@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserGestoreRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\UserGestore;
 use App\User;
@@ -16,6 +17,7 @@ class UserGestoreController extends Controller
     {
         $this->request = $request;
         $this->repository = $usergestore;
+        $this->middleware('auth');
     }
 
     /**
@@ -27,7 +29,18 @@ class UserGestoreController extends Controller
     {
         $usergestores = UserGestore::paginate(25);
 
-        return view('pages.gestores.index', compact('usergestores'));
+        $gestores = DB::table('user_gestores')
+
+                        ->join('users', 'user_gestores.user_id', '=', 'users.id')
+
+                        //->select(DB::raw('count(user_gestores.nome) as total'))
+                        ->select('user_id', DB::raw('count(nome) as total'))
+
+                        ->groupBy('user_id')
+
+                        ->get();   
+
+        return view('pages.gestores.index', compact('usergestores', 'gestores'));
     }
     
     /**
@@ -39,7 +52,7 @@ class UserGestoreController extends Controller
     {
         $users = User::all();
 
-        return view('pages.resgates.create', compact('users')); 
+        return view('pages.gestores.create', compact('users')); 
     }
 
     /**

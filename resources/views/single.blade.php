@@ -9,12 +9,11 @@
         <div class="row">
                 <div class="col-xl-6 mr-0 mt--4">
                     <div class="card shadow mb-4 mb-xl-0">
-                        <div class="header pb-9 pt-6 pt-lg-9 d-flex align-items-center"  style="background-image: {{ url("contratos{$contrato->image}") }}; border-radius: 20px; background-size: cover; background-position: center top;">
-                            <br>
-                            <br>
+                        @if ($contrato->image)
+                    <img src="http://ativos-master.test/storage/{{ $contrato->image }}"  style="border-radius: 5px; background-size: cover; background-position: center top; max-width: 500px; max-height: 400px;">
+
+                        <div class="header align-items-center">
                             
-                            @if ($contrato->image)
-                                <img src="{{ url("contratos{$contrato->image}") }}">
                             @endif
                             <!-- Mask -->
                             <span class="mask bg-gradient-default opacity-3"></span>

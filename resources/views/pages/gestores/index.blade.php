@@ -14,7 +14,8 @@
                             <div class="row">
                                 <div class="col">
                                     <h4 class="card-title text-uppercase text-muted mb-0">JÁ FORAM RESGATADOS</h4>
-                                    <span class="h2 font-weight-bold mb-0">0 amigos</span>
+                                    
+                                    <span class="h2 font-weight-bold mb-0">{{ $gestores }} amigos</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -82,7 +83,7 @@
     </div>
 </div>
 
-<div class="container-fluid mt--5">
+<div class="container-fluid mt--6">
     <div class="header-body">
                 <div class="row ">
                     <div class="col">
@@ -93,8 +94,8 @@
                                         <h3 class="mb-0">Amigos Resgatados</h3>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="#" class="btn btn-sm btn-secondary">Adicionar Amigo</a>
-                                    </div>
+                                        <a href="{{ route('gestores.create') }}" class="btn btn-sm btn-secondary">Adicionar Amigo</a>
+                                    </div> 
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -108,22 +109,14 @@
     
                                     <tbody>
                                         @foreach ($usergestores as $usergestore)
+                                        @if($usergestore->user_id == auth()->user()->id)
                                             <tr>
                                                 <td>{{ $usergestore->nome }}</td>
-                                                <td>
-                                                    <form action="{{ route('usergestores.edit', $usergestore->id) }}">
-                                                        @csrf
-                                                        
-                                                        <button type="submit" class="btn btn-success btn-sm">Editar</button>
-                                                    </form>
-                                                    <br>
-                                                    <form action="{{ route('usergestores.destroy', $usergestore->id) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
-                                                    </form>                                               
-                                                </td>
+                                                <td>{{ date( 'd/m/Y' , strtotime($usergestore->created_at)) }}</td>
                                             </tr>
+                                        @else
+               
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>

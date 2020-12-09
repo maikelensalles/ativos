@@ -27,9 +27,9 @@
             @foreach ($contratos as $contrato)
                 <div class="col-xl-4 mr-0">
                     <div class="card shadow mb-4 mb-xl-4">
-                        <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"  style="background-image: {{ url("contratos{$contrato->image}") }}; border-radius: 8px; background-size: cover; background-position: center top;">
-                            @if ($contrato->image)
-                                <img src="{{ url("contratos{$contrato->image}") }}">
+                        @if ($contrato->image)
+                        <img src="http://ativos-master.test/storage/{{ $contrato->image }}"  style="border-radius: 5px; background-size: cover; background-position: center top; max-width: 500px; max-height: 400px;">
+                        <div class="header align-items-center" >
                             @endif
                             <!-- Mask -->
                             <span class="mask bg-gradient-default opacity-3"></span>
