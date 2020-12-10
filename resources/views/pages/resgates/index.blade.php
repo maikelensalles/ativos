@@ -22,12 +22,9 @@
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col text-left">
-                                        <h4 class="card-title-white"></h4>
+                                    <div class="col text-center">
+                                        <h2 class="text-green">R$ {{ $contratousersaque->saque }}</h2>
                                     </div>
-                                    <div class="col text-right">
-                                        <p class="card-title-white"></p>
-                                    </div> 
                                 </div>
                                 
                                 <hr>
@@ -54,9 +51,9 @@
                                                   <div class="py-3 text-center">
                                                       <i class="ni ni-bell-55 ni-3x"></i>
                                                       <h3 class="heading mt-4">Obrigado por investir conosco!</h3>
-                                                      <h4 class="heading mt-4">{{ $contratousersaque->contratos }}:</h4>
+                                                      <h4 class="heading mt-4"></h4>
 
-                                                      <p>{{ $contratousersaque->status }}</p>
+                                                      <p>{{ $contratousersaque->status_saque }}</p>
                                                   </div>
                                                   
                                               </div>

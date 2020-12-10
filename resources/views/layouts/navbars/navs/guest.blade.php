@@ -1,7 +1,7 @@
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-9">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/white.png" />
+            <img src="{{ asset('argon') }}/img/brand/logo-branca2.png" class="navbar-brand-img" alt="..." style=" max-width: 250px; max-height: 90px;"/>
         </a>
         <div class="collapse navbar-collapse" id="navbar-collapse-main">
             <!-- Collapse header -->
