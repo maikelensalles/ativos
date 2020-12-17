@@ -9,7 +9,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">TOTAL EM ATIVOS</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ $contratouser }}</span>
+                                    <span class="h2 font-weight-bold mb-0">R$ {{ $contratouser->sum('total') }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">TOTAL RECEBIDO</h5>
-                                    <span class="h2 font-weight-bold mb-0">R$ 0,00</span>
+                                    <span class="h2 font-weight-bold mb-0">R$ {{ $contratousersaque->sum('total') }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Performace</h5>
-                                    <span class="h2 font-weight-bold mb-0">0,00%</span>
+                                    <span class="h2 font-weight-bold mb-0">{{ $contratofech->sum('total') }}%</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">VALOR ESTIMADO ATUAL</h5>
-                                    <span class="h2 font-weight-bold mb-0">R$ 0,00</span>
+                                    <span class="h2 font-weight-bold mb-0">R$ {{ number_format($estimado->avg('val') / 100 *$estimado->avg('rent')) }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-danger text-white rounded-circle shadow">

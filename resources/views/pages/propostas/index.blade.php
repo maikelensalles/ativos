@@ -41,7 +41,7 @@
                                             <h4 class="card-title-white">Participação:</h4>
                                         </div>
                                         <div class="col text-right">
-                                            <p class="card-title-white ">{{ $contrato->participacao }}% ao ano</p>
+                                            <p class="card-title-white ">{{ $contrato->participacao }}% ao dia</p>
                                         </div> 
                                     </div>
                                     <div class="row">

@@ -36,7 +36,7 @@
                                         <h4 class="card-title-white">Rentabilidade Alvo:</h4>
                                     </div>
                                     <div class="col text-right">
-                                        <p class="card-title-white">R${{ $contrato->rentabilidade_alvo }}</p>
+                                        <p class="card-title-white">{{ $contrato->rentabilidade_alvo }}%</p>
                                     </div> 
                                 </div>
                                 <div class="row">
