@@ -44,7 +44,7 @@ class ContratoUserController extends Controller
 
         $contratos = Contrato::all();
 
-        return view('pages.propostas.show', compact('user', 'contratos')); 
+        return back()->withStatus(__('Dados Cadastrais atualizados com sucesso.'), compact('user', 'contratos'));
     }
 
     /**

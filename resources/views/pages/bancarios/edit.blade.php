@@ -62,8 +62,8 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('conta_corrente') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-conta_corrente">{{ __('Conta Corrente') }}</label>
-                                <input type="number" name="conta_corrente" id="input-conta_corrente" class="form-control form-control-alternative{{ $errors->has('conta_corrente') ? ' is-invalid' : '' }}" placeholder="{{ __('Conta Corrente') }}" value="{{ old('conta_corrente', auth()->user()->conta_corrente) }}" required>
+                                <label class="form-control-label" for="input-conta_corrente">{{ __('Conta (sem dígito)') }}</label>
+                                <input type="number" name="conta_corrente" id="input-conta_corrente" class="form-control form-control-alternative{{ $errors->has('conta_corrente') ? ' is-invalid' : '' }}" placeholder="{{ __('Conta (sem dígito)') }}" value="{{ old('conta_corrente', auth()->user()->conta_corrente) }}" required>
 
                                 @if ($errors->has('conta_corrente'))
                                     <span class="invalid-feedback" role="alert">
@@ -72,6 +72,17 @@
                                 @endif
                             </div>
 
+                            <div class="form-group{{ $errors->has('digito') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-digito">{{ __('Dígito Conta') }}</label>
+                                <input type="number" name="digito" id="input-digito" class="form-control form-control-alternative{{ $errors->has('digito') ? ' is-invalid' : '' }}" placeholder="{{ __('Dígito Conta') }}" value="{{ old('digito', auth()->user()->digito) }}" required>
+
+                                @if ($errors->has('digito'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('digito') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success mt-4">{{ __('Salvar') }}</button>
                             </div>

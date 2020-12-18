@@ -16,7 +16,7 @@ class CadastroController extends Controller
      */
     public function create()
     {
-        return view('pages.cadastros.create');
+        return view('pages.propostas.show');     
     }
 
     /**
@@ -37,17 +37,23 @@ class CadastroController extends Controller
      */
     public function store(CadastroRequest $request)
     {
-        $data = $request->only('image', 'nascimento', 'genero', 'cpf', 'rg', 'orgao', 'estado_civil', 'telefone', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'empresa', 'profissao', 'cargo');
+        auth()->user()->update($request->all());
+
+        $data = $request->all();
 
         if ($request->hasFile('image') && $request->image->isValid()) {
-            $imagePath = $request->image->store('users');
 
+            if (auth()->user()->image && Storage::exists(auth()->user()->image)) {
+                Storage::delete(auth()->user()->image);
+            }
+
+            $imagePath = $request->image->store('users');
             $data['image'] = $imagePath;
         }
 
-        $this->repository->create($data);
+        auth()->user()->update($data);
 
-        return redirect()->route('cadastros.create');
+        return back()->withStatus(__('Dados Cadastrais atualizados com sucesso.'));
     }
 
     /**

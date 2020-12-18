@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserGestoreRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\UserGestore;
@@ -35,6 +36,8 @@ class UserGestoreController extends Controller
 
                         //->select(DB::raw('count(user_gestores.nome) as total'))
                         ->select('user_id', DB::raw('count(nome) as total'))
+
+                        ->where('user_id', '=', Auth::id())
 
                         ->groupBy('user_id')
 

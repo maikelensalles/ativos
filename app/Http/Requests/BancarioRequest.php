@@ -29,6 +29,7 @@ class BancarioRequest extends FormRequest
             'banco' => ['required'],
             'agencia' => ['required'],
             'conta_corrente' => ['required'],
+            'digito' => ['required'],
         ];
     }
 }
