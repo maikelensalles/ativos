@@ -15,8 +15,13 @@
                 <div class="col-xl-6 mr-0">
                     <div class="card shadow mb-4 mb-xl-4">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $novidade->titulo }}</h5>
-                                <br>
+                                <h2>{{ $novidade->titulo }}</h2>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="text-gray">{{ $novidade->user->name }} | {{ date( 'd/m/Y' , strtotime($novidade->created_at)) }} {{ date( 'H:i' , strtotime($novidade->created_at)) }}</h4>
+                                    </div>
+                                </div>
+                                
                                 <p class="card-text"><b>{{ $novidade->descricao }}</b></p>
                                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal-{{ $novidade->id }}">
                                     Saiba Mais
@@ -27,7 +32,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Novidade</h5>
+                                        <h4 class="modal-title" id="exampleModalLabel">Novidade</h4>
                                         
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -37,19 +42,24 @@
                                         <div class="row">
                                             <div class="col-xl-10 col-lg-10 ">
                                                 <h1>{{ $novidade->titulo }}</h1>
-                                                <br>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h4 class="text-gray">{{ $novidade->user->name }} | {{ date( 'd/m/Y' , strtotime($novidade->created_at)) }} {{ date( 'H:i' , strtotime($novidade->created_at)) }}</h4>
+                                                    </div>
+                                                </div>
+                                                
                                                 <p>{{ $novidade->sub_titulo }}</p>
                                                 <br>
                                                 <p>{{ $novidade->descricao }}</p>
                                                 <p>{{ $novidade->descricao_longa }}</p>
-                                                <br>
                                                 <tr>
                                                     <td>
                                                         @if ($novidade->image)
-                                                            <img src="http://ativos-master.test/storage/{{ $novidade->image}}" style="border-radius: 5px; background-size: cover; background-position: center top; max-width: 350px; max-height: 350px;">
+                                                            <img src="http://ativos-master.test/storage/{{ $novidade->image}}" style="border-radius: 2px; background-size: cover; background-position: center top; max-width: 350px; max-height: 350px;">
                                                         @endif
                                                     </td>  
                                                 </tr>
+                                                <br>
                                                 <br>
                                                 <p>{{ $novidade->descricao_media }}</p>
                                                 <p>{{ $novidade->obs }}</p>
@@ -74,10 +84,6 @@
 @include('layouts.footers.auth')
 @endsection
 
-@push('js')
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-@endpush
 
     
     

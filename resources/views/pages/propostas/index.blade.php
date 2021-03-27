@@ -44,14 +44,23 @@
                                             <p class="card-title-white ">{{ $contrato->participacao }}% ao dia</p>
                                         </div> 
                                     </div>
-                                    <div class="row">
+                                    {{--<div class="row">
                                         <div class="col text-left">
                                             <h4 class="card-title-white">Valor Captado:</h4>
                                         </div>
+                                        @foreach ($contratousers as $contratouser)
+                                        @if($contratouser->status == "Aprovado")
+                                        @if($contratouser->contrato_id == $contrato->id)
                                         <div class="col text-right">
-                                            <p class="card-title-white">R$ {{ $contrato->valor_captado }}</p>
-                                        </div>
-                                    </div>
+                                            <p class="card-title-white ">R${{ $contratouser->valor   }}</p>
+                                        </div> 
+                                        @else
+                                        @endif
+                                        @else
+                                        @endif
+                                        @endforeach
+                                    </div>--}}
+                                
                                     <hr>
                                     <div class="row">
                                         <div class="col text-left">
@@ -77,8 +86,3 @@
 </div>
 @include('layouts.footers.auth')
 @endsection
-
-@push('js')
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-@endpush

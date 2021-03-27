@@ -35,10 +35,28 @@ class HomeController extends Controller
      */
     public function index(ContratoUser $model)
     {
-        $contratousers = ContratoUser::paginate(25);
+        //CONTAR TOTAL DE CONTRATOS ASSINADOS E AGRUPAR POR MÊS
+        $assinado = ContratoUser::obter_Dados();
+                                   
+        $contratoass = $assinado->pluck('contar');
 
-        $contratos = Contrato::all();
+        $contratoass->toJson();
+        
+        $nome_mes = $assinado->pluck('mes');
+       
+        $nome_mes->all();
 
+        //SOMAR TOTAL DE RESGATES FEITOS E AGRUPAR POR MÊS 
+        $contratousersaque = ContratoUserSaque::obter_Resgates();
+
+        $saquesap = $contratousersaque->pluck('count');
+
+        $saquesap->toJson();
+        
+        $resgatap = $contratousersaque->pluck('month');
+
+        $resgatap->all();
+        //dd($contratousersaque);
 
         //SOMAR TOTAL EM ATIVOS
         $contratouser = DB::table('contrato_users')
@@ -53,16 +71,19 @@ class HomeController extends Controller
 
                         ->get();
 
-        //SOMAR TOTAL DE RESGATE
-        $contratousersaque = DB::table('contrato_users_saques')
+        //SOMAR TOTAL DE RESGATES FINALIZADOS
+        $resgate = DB::table('contrato_users_saques')
 
                         ->join('users', 'contrato_users_saques.user_id', '=', 'users.id')
+                    
+                        ->select('user_id', DB::raw('sum(saque) as totalASS'))       
+                        
+                        ->where([
+                            ['contrato_users_saques.status_saque', '=', 'Finalizado'],
+                            ['user_id', '=', Auth::id()],
+                        ])  
 
-                        ->select('user_id', DB::raw('sum(saque) as total'))
-
-                        ->where('user_id', '=', Auth::id())
-
-                        ->groupBy('user_id')
+                        ->groupBy('user_id', 'contrato_users_saques.status_saque')
 
                         ->get();
         
@@ -101,7 +122,15 @@ class HomeController extends Controller
                         ->get();
 
         $usergestores = UserGestore::paginate(25);
+
+        $contratousers =    ContratoUser::all();
+
+        $contratos = Contrato::all();
+
+        //$buscas = ContratoUser::obterDados();
     
-        return view('dashboard', compact('contratousers', 'contratos', 'contratouser', 'contratousersaque', 'contratofech', 'estimado', 'usergestores'));
+        return view('dashboard', compact('assinado', 'resgatap', 'resgate', 'contratoass', 'saquesap', 'nome_mes', 'contratos', 'contratouser', 'contratousersaque', 'contratofech', 'estimado', 'usergestores', 'contratousers'));
     }
+
+    
 }

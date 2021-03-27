@@ -134,7 +134,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('grupos.index') }}">
                                     <i class="ni ni-fat-delete"></i>
                                     {{ __('Grupos WhatsApp') }}
                                 </a>
@@ -149,8 +149,6 @@
                     </div>
                 </li>
             </ul>
-
-           
         </div>
     </div>
 </nav>

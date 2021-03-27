@@ -3,11 +3,13 @@
 namespace App\Http\Controllers; 
 
 use App\Http\Requests\ContratoUserSaqueRequest;
+use App\Http\Requests\UserSaldoRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\ContratoUserSaque;
 use App\ContratoUser;
 use App\Contrato;
+use App\UserSaldo;
 use App\User;
 
 class ContratoUserSaqueController extends Controller
@@ -28,17 +30,13 @@ class ContratoUserSaqueController extends Controller
      */
     public function index(ContratoUserSaque $model)
     {
-        $contratousersaques = ContratoUserSaque::paginate(25);
+        $contratousersaques = ContratoUserSaque::paginate(10);
 
-        $contratos = DB::table('contrato_users')
+        $contratos = Contrato::all();
 
-                     ->join('contratos', 'contrato_users.contrato_id', '=', 'contratos.id')
+        $contratousers = ContratoUser::all();
 
-                     ->get();
-
-        $propostas = ContratoUser::all();
-
-        return view('pages.resgates.index', compact('contratousersaques', 'contratos', 'propostas'));
+        return view('pages.resgates.index', compact('contratousersaques', 'contratos', 'contratousers'));
     }
 
     /**
@@ -48,15 +46,33 @@ class ContratoUserSaqueController extends Controller
      */
     public function create()
     {
-        $contratos = DB::table('contrato_users')
+        /**$contratousers = DB::table('contrato_users')
 
                     ->join('contratos', 'contrato_users.contrato_id', '=', 'contratos.id')
 
-                    ->get();
+                    ->get();*/
+
+        $saldoo = ContratoUser::saldo();
+
+        //dd($saldoo);
+
+        $porcentoo = $saldoo->avg('porcento');
+
+        //$porcentoo->all();
+        
+        $valuee = $saldoo->first('value');
+       
+        //$valuee->all();
+
+        //$valor_saldo = $valuee / 100 * $porcentoo; , 'valor_saldo'
+
+        $contratousers = ContratoUser::all();
+
+        $contratos = Contrato::all();
 
         $users = User::all();
 
-        return view('pages.resgates.create', compact('contratos', 'users')); 
+        return view('pages.resgates.create', compact('contratousers', 'users', 'contratos', 'saldoo', 'porcentoo', 'valuee')); 
     }
 
     /**
@@ -67,7 +83,7 @@ class ContratoUserSaqueController extends Controller
      */
     public function store(ContratoUserSaqueRequest $request)
     {
-        $data = $request->only('solicitacao', 'contrato_id', 'user_id');
+        $data = $request->all();
 
         $this->repository->create($data);
 

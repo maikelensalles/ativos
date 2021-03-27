@@ -60,7 +60,9 @@
                                         <h4 class="card-title-white">Valor Captado:</h4>
                                     </div>
                                     <div class="col text-right">
-                                        <p class="card-title-white">R${{ $contrato->valor_captado }}</p>
+
+                                        <p class="card-title-white">R$ {{ $contratouser->sum('total') }}</p>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -87,10 +89,12 @@
                                     <h1>SOBRE O INVESTIMENTO</h1>
                                     <p>{{ $contrato->body }}</p>
                                     <br>
+                                    <img src="http://ativos-master.test/storage/{{ $contrato->image_body }}"  style="border-radius: 5px; background-size: cover; background-position: center top; max-width: 500px; max-height: 400px;">
                                     <br>
                                     <h1>O PROJETO</h1>
                                     <p>{{ $contrato->body_2 }}</p>
                                     <br>
+                                    <img src="http://ativos-master.test/storage/{{ $contrato->image_body2 }}"  style="border-radius: 5px; background-size: cover; background-position: center top; max-width: 500px; max-height: 400px;">
                                     <br>
                                     <h1>{{ $contrato->descricao }}</h1>
                                     <p>{{ $contrato->body_3 }}</p>
@@ -105,8 +109,3 @@
 </div>
 @include('layouts.footers.auth')
 @endsection
-
-@push('js')
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-@endpush

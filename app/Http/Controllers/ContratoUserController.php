@@ -3,6 +3,7 @@
 namespace App\Http\Controllers; 
 
 use App\Http\Requests\ContratoUserRequest;
+use App\Http\Requests\CadastroRequest;
 use Illuminate\Http\Request;
 use App\ContratoUser;
 use App\Contrato;
@@ -33,6 +34,11 @@ class ContratoUserController extends Controller
         return view('pages.contratos.index', compact('contratousers', 'contratos'));
     }
 
+    public function teste()
+    {
+        return ContratoUser::all();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -44,7 +50,7 @@ class ContratoUserController extends Controller
 
         $contratos = Contrato::all();
 
-        return back()->withStatus(__('Dados Cadastrais atualizados com sucesso.'), compact('user', 'contratos'));
+        return view('pages.propostas.show', compact('user', 'contratos'));
     }
 
     /**
@@ -55,11 +61,11 @@ class ContratoUserController extends Controller
      */
     public function store(Request $request, Contrato $contrat0)
     {
-        $data = $request->only('valor', 'contrato_id', 'user_id');
+        $data = $request->all();
 
         $this->repository->create($data);
 
-        return redirect()->route('contratos.index');
+        return back()->withStatus(__('Proposta reservada com sucesso! Para garantir a reserva solicitada, realize o pagamento logo abaixo.'));
     }
 
     /**
@@ -85,14 +91,9 @@ class ContratoUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $contratouser = ContratoUser::all();
-
-        if (!$contratouser = $this->repository->find($id))
-            return redirect()->back();
-
-        return view('pages.contratos.edit', compact('contratouser'));
+        //
     }
 
     /**
@@ -102,16 +103,9 @@ class ContratoUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CadastroRequest $request)
     {   
-        if (!$contratouser = $this->repository->find($id))
-            return redirect()->back();
-
-        $data = $request->all();
-
-        $contratouser->update($data);
-
-        return redirect()->route('saques.saque');
+        //
     }
 
     /**

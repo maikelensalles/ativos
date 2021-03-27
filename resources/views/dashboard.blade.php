@@ -15,13 +15,25 @@
                             </div>
                             <div class="col">
                                 <ul class="nav nav-pills justify-content-end">
-                                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                                    <script>
+                                        var datasetsss = [@json($saquesap), @json($resgatap)]
+                            
+                                        // or using an object
+                                        var theDatasetsss = {
+                                            saquesap: @json($saquesap),
+                                            resgatap: @json($resgatap),
+                                        }
+                            
+                                    </script>
+                        <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+                                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasetsss":[{"data":datasets[0]}]}}' data-prefix="" data-suffix="">
                                         <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
                                             <span class="d-none d-md-block">Mês</span>
                                             <span class="d-md-none">M</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                                    
+                                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":datasetsss[0]}]}}' data-prefix="" data-suffix="">
                                         <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
                                             <span class="d-none d-md-block">Ano</span>
                                             <span class="d-md-none">A</span>
@@ -37,6 +49,7 @@
                             <!-- Chart wrapper -->
                             <canvas id="chart-sales" class="chart-canvas"></canvas>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -50,6 +63,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="card-body">
                         <!-- Chart -->
                         <div class="chart">
@@ -59,6 +73,17 @@
                 </div>
             </div>
         </div>
+        <script>
+            var datasets = [@json($contratoass), @json($nome_mes)]
+
+            // or using an object
+            var theDatasets = {
+                contratoass: @json($contratoass),
+                nome_mes: @json($nome_mes),
+            }
+
+        </script>
+        <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
         <div class="row mt-5">
             <div class="col-xl-8 mb-5 mb-xl-0">
                 <div class="card shadow">
@@ -130,14 +155,14 @@
                             </thead>
                             <tbody>
                                 @foreach ($contratousers as $contratouser)
-                                @if($contratouser->user_id == auth()->user()->id)
                                 <tr>
-                                    <th scope="row">
+                                     <th scope="row">
                                         {{ $contratouser->contrato->titulo }}
                                     </th>
                                     <td>
                                         {{ $contratouser->contrato->rentabilidade_alvo }}%
                                     </td>
+                    
                                     {{--<td>
                                         <div class="d-flex align-items-center">
                                             <span class="mr-2">{{ $contratouser->contrato->rentabilidade_alvo }}%</span>
@@ -149,6 +174,7 @@
                                         </div>
                                     </td>--}}
                                 </tr>
+                                @endforeach
                                 {{--<tr>
                                     <th scope="row">
                                         Facebook
@@ -221,10 +247,8 @@
                                         </div>
                                     </td>
                                 </tr>--}}
-                                @else
-               
-                                @endif
-                                @endforeach
+                                
+                                
                             </tbody>
                         </table>
                     </div>
@@ -237,6 +261,7 @@
 @endsection
 
 @push('js')
+    <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush

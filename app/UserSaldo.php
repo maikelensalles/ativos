@@ -5,12 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserGestore extends Model
+class UserSaldo extends Model
 {
     use SoftDeletes;
-    protected $table = 'user_gestores';
-    protected $fillable = ['nome', 'user_id'];
-    protected $primaryKey = 'id';
+    protected $table = 'user_saldos';
+    protected $fillable = ['saldo', 'user_id'];
 
     public function user()
     {

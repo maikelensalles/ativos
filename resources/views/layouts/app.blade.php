@@ -32,6 +32,8 @@
         </div>
 
         @guest()
+            <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
             @include('layouts.footers.guest')
         @endguest
 
@@ -41,6 +43,8 @@
         @stack('js')
         
         <!-- Argon JS -->
+<script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
     </body>
 </html>

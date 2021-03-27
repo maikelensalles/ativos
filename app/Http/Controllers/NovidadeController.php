@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\NovidadeRequest;
 use Illuminate\Http\Request;
 use App\Novidade;
+use App\User;
 
 class NovidadeController extends Controller
 {
@@ -25,8 +26,9 @@ class NovidadeController extends Controller
     public function index()
     {
         $novidades = Novidade::all();
+        $users = User::all();
 
-        return view('pages.novidades.index', compact('novidades'));
+        return view('pages.novidades.index', compact('novidades', 'users'));
     }
     
     /**

@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">TOTAL RECEBIDO</h5>
-                                    <span class="h2 font-weight-bold mb-0">R$ {{ $contratousersaque->sum('total') }}</span>
+                                    <span class="h2 font-weight-bold mb-0">R$ {{ $resgate->sum('totalASS') }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-success text-white rounded-circle shadow">

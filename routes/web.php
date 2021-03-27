@@ -19,6 +19,8 @@ Route::any('propostas/search', 'ContratoController@search')->name('propostas.sea
 
 Route::resource('contratos', 'ContratoUserController')->middleware('auth');
 
+Route::resource('grupos', 'GrupoController')->middleware('auth');
+
 Route::resource('resgates', 'ContratoUserSaqueController')->middleware('auth');
 
 Route::get('saques', 'ContratoUserController@saque')->name('saques.saque')->middleware('auth');

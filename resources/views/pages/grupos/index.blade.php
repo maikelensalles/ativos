@@ -3,11 +3,12 @@
 @section('content')
 
 <div class="header bg-gradient-default pb-8 pt-5 pt-md-8">
-    <h1 class="text-center text-white">Resgate seus amigos dos maus investimentos</h1>
+    <h1 class="text-center text-white">Entre em nossos grupos do Whatsapp</h1>
+    <p class="text-center text-white">E fique por dentro de todas as novidades</p>
     <div class="container-fluid">
         <div class="header-body">
             <!-- Card stats -->
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
@@ -82,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
     </div>
 </div>
@@ -95,32 +96,25 @@
                             <div class="card-header border-0">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h3 class="mb-0">Amigos Resgatados</h3>
+                                        <h3 class="mb-0">Basta Clicar</h3>
                                     </div>
-                                    <div class="col text-right">
-                                        <a href="{{ route('gestores.create') }}" class="btn btn-sm btn-secondary">Adicionar Amigo</a>
-                                    </div> 
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" width="100">Nome</th>
-                                            <th scope="col" width="100">Data</th>
+                                            <th scope="col" width="100">Grupo</th>
+                                            <th scope="col" width="100">Link</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($usergestores as $usergestore)
-                                        @if($usergestore->user_id == auth()->user()->id)
-                                            <tr>
-                                                <td>{{ $usergestore->nome }}</td>
-                                                <td>{{ date( 'd/m/Y' , strtotime($usergestore->created_at)) }}</td>
-                                            </tr>
-                                        @else
-               
-                                        @endif
-                                        @endforeach
+                                        @foreach ($grupos as $grupo)
+                                        <tr>
+                                            <td>{{ $grupo->titulo }}</td>
+                                            <td><a href="https://api.whatsapp.com/send?phone=55{{ $grupo->link }}" target="_blank">{{ $grupo->link }}</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

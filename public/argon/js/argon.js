@@ -935,7 +935,7 @@ var OrdersChart = (function() {
 					yAxes: [{
 						ticks: {
 							callback: function(value) {
-								if (!(value % 10)) {
+								if (!(value % 1)) {
 									//return '$' + value + 'k'
 									return value
 								}
@@ -962,10 +962,10 @@ var OrdersChart = (function() {
 				}
 			},
 			data: {
-				labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				labels: datasets[1],
 				datasets: [{
 					label: 'Sales',
-					data: [25, 20, 30, 22, 17, 29]
+					data: datasets[0],
 				}]
 			}
 		});
@@ -1014,8 +1014,9 @@ var SalesChart = (function() {
 						},
 						ticks: {
 							callback: function(value) {
-								if (!(value % 10)) {
-									return '$' + value + 'k';
+								if (!(value % 50)) {
+									//return '$' + value + 'k';
+									return 'R$' + value 
 								}
 							}
 						}
@@ -1032,17 +1033,17 @@ var SalesChart = (function() {
 								content += '<span class="popover-body-label mr-auto">' + label + '</span>';
 							}
 
-							content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
+							content += '<span class="popover-body-value">' + yLabel + '</span>';
 							return content;
 						}
 					}
 				}
 			},
 			data: {
-				labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				labels: datasetsss[1],
 				datasets: [{
 					label: 'Performance',
-					data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+					data: datasetsss[0]
 				}]
 			}
 		});

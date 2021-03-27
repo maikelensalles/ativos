@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\CurrentPasswordCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContratoUserRequest extends FormRequest
+class UserSaldoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class ContratoUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return  true;
+        return auth()->check();
     }
 
     /**
@@ -25,9 +25,7 @@ class ContratoUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'saque' => ['required'],
-            'valor' => ['required'],
-            'contrato_id' => ['required'],
+            'saldo' => ['required'],
         ];
     }
 

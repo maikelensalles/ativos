@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ContratoRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\ContratoSetor;
+use App\ContratoUser;
 use App\Contrato;
 use App\User;
 
@@ -29,9 +32,11 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        $contratos = Contrato::paginate(25);
+        $contratos = Contrato::all();
 
-        return view('pages.propostas.index', compact('contratos'));
+        $contratousers = ContratoUser::all();
+
+        return view('pages.propostas.index', compact('contratos', 'contratousers'));
     }
 
     /**
@@ -145,7 +150,23 @@ class ContratoController extends Controller
     {
         $contrato = $this->contrato->whereSlug($slug)->first();
 
-        return view('single', compact('contrato'));
+         //SOMAR TOTAL CAPTADO DAS PROPOSTAS ASSINADAS
+         $contratouser = DB::table('contrato_users')
+
+         ->join('contratos', 'contrato_users.contrato_id', '=', 'contratos.id')
+       
+         ->select('contrato_id', DB::raw('sum(valor) as total'))       
+         
+         ->where([
+            ['contrato_users.status', '=', 'Aprovado'],
+            ['contrato_users.contrato_id', '=', $contrato->id],
+        ])  
+
+         ->groupBy('contrato_users.contrato_id', 'contrato_users.status')
+
+         ->get();
+
+        return view('single', compact('contrato', 'contratouser'));
     }
 
     /**

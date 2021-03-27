@@ -23,12 +23,12 @@
                                     <input type="text" name="nome" id="input-nome" class="form-control form-control-alternative{{ $errors->has('nome') ? ' is-invalid' : '' }}" placeholder="" value="{{ old('nome') }}" required>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('user_id') ? ' has-danger' : '' }}">
+                                {{--<div class="form-group{{ $errors->has('user_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-user_id">Seu Nome</label>
                                     <select name="user_id" id="input-user_id" class="form-control form-control-alternative{{ $errors->has('user_id') ? ' is-invalid' : '' }}" required>
                                         <option value="{{auth()->user()->id}}" selected>{{auth()->user()->name}}</option>
                                     </select>                                            
-                                </div>
+                                </div>--}}
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">Enviar</button>
@@ -45,7 +45,17 @@
 
 @endsection
 
-@push('js')
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-@endpush
+
+
+
+
+
+
+
+
+
+
+
+
+
+
